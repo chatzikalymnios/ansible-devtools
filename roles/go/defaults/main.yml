@@ -1,0 +1,5 @@
+---
+version: latest
+arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
+prefix: /usr/local
+bindir: /usr/local/bin
