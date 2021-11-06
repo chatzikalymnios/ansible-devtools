@@ -3,6 +3,16 @@
   set_fact:
     latest_release: "{{ lookup('url', 'https://api.github.com/repos/derailed/k9s/releases/latest') | from_json }}"
 
+- name: check currently installed version
+  command: k9s version --short
+  register: k9s_version
+  ignore_errors: yes
+
+- name: set current version
+  set_fact:
+    current_version: "{{ k9s_version.stdout.split()[1] }}"
+  when: k9s_version.failed == false
+
 - name: install k9s
   become: yes
   unarchive:
@@ -13,3 +23,4 @@
     exclude:
       - LICENSE
       - README.md
+  when: (current_version is not defined) or (latest_release.tag_name != current_version)
