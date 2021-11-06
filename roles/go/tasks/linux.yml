@@ -19,30 +19,26 @@
     current_version: "{{ go_version.stdout.split(' ')[2] }}"
   when: go_version.failed == false
 
-- name: bail out if desired version already installed
-  meta: end_host
-  when: (current_version is defined) and (desired_version == current_version)
-
 - name: remove current go symlink
   become: yes
   file:
     path: "{{ bindir }}/go"
     state: absent
-  when: current_version is defined
+  when: (current_version is defined) and (desired_version != current_version)
 
 - name: remove current gofmt symlink
   become: yes
   file:
     path: "{{ bindir }}/go"
     state: absent
-  when: current_version is defined
+  when: (current_version is defined) and (desired_version != current_version)
 
 - name: remove current version
   become: yes
   file:
     path: "{{ bindir }}/gofmt"
     state: absent
-  when: current_version is defined
+  when: (current_version is defined) and (desired_version != current_version)
 
 - name: download and extract archive
   become: yes
@@ -51,6 +47,7 @@
     dest: "{{ prefix }}"
     remote_src: yes
     mode: u=rwx,g=rx,o=rx
+  when: (current_version is not defined) or (desired_version != current_version)
 
 - name: create go symlink
   become: yes
@@ -58,6 +55,7 @@
     src: "{{ prefix }}/go/bin/go"
     dest: "{{ bindir }}/go"
     state: link
+  when: (current_version is not defined) or (desired_version != current_version)
 
 - name: create gofmt symlink
   become: yes
@@ -65,3 +63,4 @@
     src: "{{ prefix }}/go/bin/gofmt"
     dest: "{{ bindir }}/gofmt"
     state: link
+  when: (current_version is not defined) or (desired_version != current_version)
