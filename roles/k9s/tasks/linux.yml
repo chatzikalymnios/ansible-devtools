@@ -1,0 +1,15 @@
+---
+- name: get latest tag
+  set_fact:
+    latest_release: "{{ lookup('url', 'https://api.github.com/repos/derailed/k9s/releases/latest') | from_json }}"
+
+- name: install k9s
+  become: yes
+  unarchive:
+    src: https://github.com/derailed/k9s/releases/download/{{ latest_release.tag_name }}/k9s_Linux_{{ arch }}.tar.gz
+    dest: "{{ bindir }}"
+    remote_src: yes
+    mode: u=rwx,g=rx,o=rx
+    exclude:
+      - LICENSE
+      - README.md

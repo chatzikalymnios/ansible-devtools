@@ -1,0 +1,3 @@
+---
+arch: "{{ ansible_architecture }}"
+bindir: /usr/local/bin

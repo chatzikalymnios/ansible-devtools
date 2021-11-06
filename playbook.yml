@@ -7,5 +7,6 @@
   roles:
     - essentials
     - go
+    - k9s
     - nvm
     - sdkman

@@ -6,6 +6,7 @@ This is a collection of ansible roles I use to set up development tools on my Ub
 
 - [essentials](roles/essentials)
 - [go](roles/go)
+- [k9s](roles/k9s)
 - [nvm](roles/nvm)
 - [sdkman](roles/sdkman)
 
