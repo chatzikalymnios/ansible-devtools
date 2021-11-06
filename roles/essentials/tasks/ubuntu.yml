@@ -1,0 +1,11 @@
+---
+- name: install build-essential, curl, git, vim
+  become: yes
+  apt:
+    name:
+      - build-essential
+      - curl
+      - git
+      - vim
+    state: latest
+    update_cache: yes

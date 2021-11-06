@@ -5,8 +5,5 @@
   connection: local
   gather_facts: yes
   roles:
-    - role: go
-      version: latest
-      arch: amd64
-      prefix: /usr/local
-      bindir: /usr/local/bin
+    - essentials
+    - go

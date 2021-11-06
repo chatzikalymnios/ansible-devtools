@@ -1,9 +1,10 @@
 # Development Tools Collection for Ansible
 
-This is a collection of ansible roles I use to set up development tools on my workstation. I use Ubuntu, so YMMV with other distributions.
+This is a collection of ansible roles I use to set up development tools on my Ubuntu system. Some roles explicitly only work on Ubuntu. Others are potentially more broadly applicable, but have not been tested on any other distribution.
 
 ## Roles
 
+- [essentials](roles/essentials)
 - [go](roles/go)
 
 ## Using this collection

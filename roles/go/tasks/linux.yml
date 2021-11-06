@@ -1,15 +1,15 @@
 ---
-- name: set desired go version to latest available
+- name: set desired version to latest available
   set_fact:
     desired_version: "{{ lookup('url', 'https://golang.org/VERSION?m=text', split_lines=False) }}"
   when: version == "latest"
 
-- name: set desired go version to provided version
+- name: set desired version to specified version
   set_fact:
     desired_version: "go{{ version }}"
   when: version != "latest"
 
-- name: check currently installed go version
+- name: check currently installed version
   command: go version
   register: go_version
   ignore_errors: yes
