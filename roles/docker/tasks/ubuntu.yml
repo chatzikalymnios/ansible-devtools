@@ -1,0 +1,32 @@
+---
+- name: add official docker GPG key
+  become: yes
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add stable docker apt repository
+  become: yes
+  apt_repository:
+    repo: deb [arch={{ arch }}] https://download.docker.com/linux/ubuntu {{ lsb_release }} stable
+    state: present
+    filename: docker
+    mode: 0644
+
+- name: install docker
+  become: yes
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: latest
+    update_cache: yes
+
+- name: add user to docker group
+  become: yes
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups:
+      - docker
+    append: yes
