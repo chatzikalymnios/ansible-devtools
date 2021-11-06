@@ -16,7 +16,7 @@
 
 - name: set current version
   set_fact:
-    current_version: "{{ go_version.stdout.split(' ')[2] }}"
+    current_version: "{{ go_version.stdout.split()[2] }}"
   when: go_version.failed == false
 
 - name: remove current go symlink
