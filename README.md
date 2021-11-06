@@ -6,6 +6,7 @@ This is a collection of ansible roles I use to set up development tools on my Ub
 
 - [essentials](roles/essentials)
 - [go](roles/go)
+- [nvm](roles/nvm)
 
 ## Using this collection
 
