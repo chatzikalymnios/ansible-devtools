@@ -4,11 +4,12 @@ This role can be used to install essential packages for development on an Ubuntu
 
 ## Packages
 
-The following packages will be installed.
+This role installs the following packages.
 
 - `build-essential`
 - `curl`
 - `git`
+- `htop`
 - `vim`
 
 ## Example Playbook

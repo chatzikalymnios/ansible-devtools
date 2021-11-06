@@ -6,6 +6,7 @@
       - build-essential
       - curl
       - git
+      - htop
       - vim
     state: latest
     update_cache: yes
