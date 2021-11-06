@@ -1,0 +1,31 @@
+---
+- name: check if nvm already exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  register: nvm_sh
+
+- name: get latest tag
+  set_fact:
+    latest_release: "{{ lookup('url', 'https://api.github.com/repos/nvm-sh/nvm/releases/latest') | from_json }}"
+  when: nvm_sh.stat.exists == false
+
+- name: download install script
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/{{ latest_release.tag_name }}/install.sh
+    dest: /tmp/nvm-install.sh
+    mode: u=rwx,g=rx,o=rx
+  when: nvm_sh.stat.exists == false
+
+- name: run install script
+  become: yes
+  command:
+    cmd: /tmp/nvm-install.sh
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+- name: remove install script
+  become: yes
+  file:
+    path: /tmp/nvm-install.sh
+    state: absent

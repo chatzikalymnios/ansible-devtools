@@ -1,9 +1,9 @@
 ---
-- name: assert supported distribution
+- name: assert supported system
   assert:
     that:
-      - ansible_distribution == "Ubuntu"
-    fail_msg: "{{ ansible_distribution }} not supported"
+      - ansible_system == "Linux"
+    fail_msg: "{{ ansible_system }} not supported"
     quiet: yes
 
-- include_tasks: "{{ ansible_distribution | lower }}.yml"
+- include_tasks: "{{ ansible_system | lower }}.yml"

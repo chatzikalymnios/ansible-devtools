@@ -1,6 +1,6 @@
 # NVM Ansible Role
 
-This role can be used to install [nvm](https://github.com/nvm-sh/nvm) on an Ubuntu development workstation.
+This role can be used to install [nvm](https://github.com/nvm-sh/nvm) on a Linux development workstation.
 
 ## Example Playbook
 
