@@ -1,0 +1,10 @@
+---
+- name: get latest tag
+  set_fact:
+    latest_release: "{{ lookup('url', 'https://api.github.com/repos/nvm-sh/nvm/releases/latest') | from_json }}"
+
+- name: nvm
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ latest_release.tag_name }}/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
