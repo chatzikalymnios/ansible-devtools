@@ -2,21 +2,29 @@
 
 This role can be used to install or upgrade/downgrade [Go](https://golang.org/) on a Linux development workstation.
 
-## Role Variables and Defaults
+## Role Variables
 
-```yml
-# the version of Go to install
-version: latest
+The role uses variables defined in `defaults/main.yml`.
 
-# the system architecture
-arch: derived from {{ ansible_architecture }}
+### `version`
 
-# the directory in which to extract the archive
-prefix: /usr/local
+- Version to install
+- Default value: `latest`
 
-# the directory in which to create symlinks for the Go binaries
-bindir: /usr/local/bin
-```
+### `arch`
+
+- System architecture
+- Default value: derived from `{{ ansible_architecture }}`
+
+### `prefix`
+
+- Directory in which to extract the archive
+- Default value: `/usr/local`
+
+### `bindir`
+
+- Directory in which to create symlinks for the binaries
+- Default value: `/usr/local/bin`
 
 ## Example Playbook
 
