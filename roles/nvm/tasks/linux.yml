@@ -1,4 +1,12 @@
 ---
+- name: install curl
+  become: yes
+  apt:
+    name:
+      - curl
+    state: latest
+    update_cache: yes
+
 - name: get latest tag
   set_fact:
     latest_release: "{{ lookup('url', 'https://api.github.com/repos/nvm-sh/nvm/releases/latest') | from_json }}"
