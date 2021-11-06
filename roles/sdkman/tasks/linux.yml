@@ -1,0 +1,25 @@
+---
+- name: check if sdkman directory already exists
+  stat: 
+    path: "{{ ansible_env.HOME }}/.sdkman"
+  register: sdkman_dir
+
+- name: download install script
+  become: yes
+  get_url:
+    url: https://get.sdkman.io
+    dest: /tmp/sdkman-install.sh
+    mode: u=rwx,g=rx,o=rx
+  when: sdkman_dir.stat.exists == false
+
+- name: run install script
+  become: yes
+  command: /tmp/sdkman-install.sh
+  args:
+    creates: "{{ ansible_env.HOME }}/.sdkman"
+
+- name: remove install script
+  become: yes
+  file:
+    path: /tmp/sdkman-install.sh
+    state: absent

@@ -1,6 +1,6 @@
 # SDKMAN! Ansible Role
 
-This role can be used to install [SDKMAN!](https://sdkman.io/) on an Ubuntu development workstation.
+This role can be used to install [SDKMAN!](https://sdkman.io/) on a Linux development workstation.
 
 ## Example Playbook
 
