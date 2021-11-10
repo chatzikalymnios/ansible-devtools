@@ -1,0 +1,14 @@
+---
+- name: install packages
+  become: yes
+  apt:
+    name:
+      - qemu
+      - qemu-kvm
+      - libvirt-daemon
+      - libvirt-clients
+      - libvirt-dev
+      - bridge-utils
+      - virt-manager
+    state: latest
+    update_cache: yes
