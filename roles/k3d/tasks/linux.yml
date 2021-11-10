@@ -1,0 +1,29 @@
+---
+- name: download install script
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/rancher/k3d/main/install.sh
+    dest: /tmp/k3d-install.sh
+    mode: u=rwx,g=rx,o=rx
+
+- name: run install script
+  become: yes
+  command:
+    cmd: /tmp/k3d-install.sh
+
+- name: remove install script
+  become: yes
+  file:
+    path: /tmp/k3d-install.sh
+    state: absent
+
+- name: generate k3d bash completion
+  command:
+    cmd: k3d completion bash
+  register: k3d_completion_bash
+
+- name: persist bash completion file
+  become: yes
+  copy:
+    dest: /etc/bash_completion.d/k3d
+    content: "{{ k3d_completion_bash.stdout }}\n"

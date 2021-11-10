@@ -10,6 +10,7 @@
     - gcloud
     - go
     - helm
+    - k3d
     - k9s
     - kubectl
     - nvm
