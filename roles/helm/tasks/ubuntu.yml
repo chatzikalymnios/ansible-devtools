@@ -1,0 +1,17 @@
+---
+- name: install helm
+  become: yes
+  snap:
+    name: helm
+    classic: yes
+
+- name: generate helm bash completion
+  command:
+    cmd: helm completion bash
+  register: helm_completion_bash
+
+- name: persist bash completion file
+  become: yes
+  copy:
+    dest: /etc/bash_completion.d/helm
+    content: "{{ helm_completion_bash.stdout }}\n"

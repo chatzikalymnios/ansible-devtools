@@ -8,6 +8,7 @@ This is a collection of ansible roles I use to set up development tools on my Ub
 - [docker](roles/docker)
 - [gcloud](roles/gcloud)
 - [go](roles/go)
+- [helm](roles/helm)
 - [k9s](roles/k9s)
 - [kubectl](roles/kubectl)
 - [nvm](roles/nvm)

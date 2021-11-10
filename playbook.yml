@@ -9,6 +9,7 @@
     - docker
     - gcloud
     - go
+    - helm
     - k9s
     - kubectl
     - nvm
