@@ -1,5 +1,5 @@
 ---
-- name: install build-essential, curl, git, vim
+- name: install build-essential, curl, git, htop, vim
   become: yes
   apt:
     name:
