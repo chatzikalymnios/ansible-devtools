@@ -1,0 +1,17 @@
+---
+- name: install kubectl
+  become: yes
+  snap:
+    name: kubectl
+    classic: yes
+
+- name: generate kubectl bash completion
+  command:
+    cmd: kubectl completion bash
+  register: kubectl_completion_bash
+
+- name: persist bash completion file
+  become: yes
+  copy:
+    dest: /etc/bash_completion.d/kubectl
+    content: "{{ kubectl_completion_bash.stdout }}\n"

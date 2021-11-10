@@ -10,6 +10,7 @@
     - gcloud
     - go
     - k9s
+    - kubectl
     - nvm
     - sdkman
     - terraform
