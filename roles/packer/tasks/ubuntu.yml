@@ -1,0 +1,35 @@
+---
+- name: add official HashiCorp GPG key
+  become: yes
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: add official HashiCorp apt repository
+  become: yes
+  apt_repository:
+    repo: deb [arch={{ arch }}] https://apt.releases.hashicorp.com {{ lsb_release }} main
+    state: present
+    filename: hashicorp
+    mode: 0644
+
+- name: install packer
+  become: yes
+  apt:
+    name: packer
+    state: latest
+    update_cache: yes
+
+- name: configure bash completion
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} PACKER"
+    marker_begin: "BEGIN ::"
+    marker_end: "##END ::"
+    block: "complete -C /usr/bin/packer packer"
+
+- name: ensure pretty .bashrc
+  replace:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: "(?<=.\n)# BEGIN :: PACKER$"
+    replace: "\n# BEGIN :: PACKER"

@@ -13,6 +13,7 @@ This is a collection of ansible roles I use to set up development tools on my Ub
 - [k9s](roles/k9s)
 - [kubectl](roles/kubectl)
 - [nvm](roles/nvm)
+- [packer](roles/packer)
 - [qemu-kvm](roles/qemu-kvm)
 - [sdkman](roles/sdkman)
 - [terraform](roles/terraform)
