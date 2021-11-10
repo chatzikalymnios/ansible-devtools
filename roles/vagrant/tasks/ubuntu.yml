@@ -1,0 +1,30 @@
+---
+- name: add official HashiCorp GPG key
+  become: yes
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: add official HashiCorp apt repository
+  become: yes
+  apt_repository:
+    repo: deb [arch={{ arch }}] https://apt.releases.hashicorp.com {{ lsb_release }} main
+    state: present
+    filename: hashicorp
+    mode: 0644
+
+- name: install vagrant
+  become: yes
+  apt:
+    name: vagrant
+    state: latest
+    update_cache: yes
+
+- name: install vagrant bash completion
+  command: vagrant autocomplete install
+
+- name: ensure pretty .bashrc
+  replace:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: "(?<=.\n)# >>>> Vagrant command completion (start)$"
+    replace: "\n# >>>> Vagrant command completion (start)"

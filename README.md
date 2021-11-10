@@ -17,6 +17,7 @@ This is a collection of ansible roles I use to set up development tools on my Ub
 - [qemu-kvm](roles/qemu-kvm)
 - [sdkman](roles/sdkman)
 - [terraform](roles/terraform)
+- [vagrant](roles/vagrant)
 
 ## Using this collection
 
