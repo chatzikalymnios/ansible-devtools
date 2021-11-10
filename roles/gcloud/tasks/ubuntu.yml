@@ -1,0 +1,22 @@
+---
+- name: add official Google Cloud GPG key
+  become: yes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/cloud.google.gpg
+    state: present
+
+- name: add official Google Cloud SDK apt repository
+  become: yes
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+    state: present
+    filename: google-cloud-sdk
+    mode: 0644
+
+- name: install gcloud
+  become: yes
+  apt:
+    name: google-cloud-sdk
+    state: latest
+    update_cache: yes

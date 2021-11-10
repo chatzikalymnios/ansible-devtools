@@ -7,6 +7,7 @@
   roles:
     - essentials
     - docker
+    - gcloud
     - go
     - k9s
     - nvm
