@@ -20,6 +20,9 @@
     state: latest
     update_cache: yes
 
+- name: install libvirt plugin
+  command: vagrant plugin install vagrant-libvirt
+
 - name: install vagrant bash completion
   command: vagrant autocomplete install
 
